@@ -99,27 +99,27 @@ CREATE TABLE return_status
 ALTER TABLE issued_status
 ADD	CONSTRAINT fk_members
 FOREIGN KEY (issued_member_id)
-REFERENCES members(member_id)
+REFERENCES members(member_id);
 
 ALTER TABLE issued_status
 ADD CONSTRAINT fk_books
 FOREIGN KEY (issued_book_isbn)
-REFERENCES books(isbn)
+REFERENCES books(isbn);
 
 ALTER TABLE issued_status
 ADD CONSTRAINT fk_employees
 FOREIGN KEY (issued_emp_id)
-REFERENCES employees(emp_id)
+REFERENCES employees(emp_id);
 
 ALTER TABLE employees
 ADD CONSTRAINT fk_branch
 FOREIGN KEY (branch_id)
-REFERENCES branch(branch_id)
+REFERENCES branch(branch_id);
 
 ALTER TABLE return_status
 ADD CONSTRAINT fk_issued_status
 FOREIGN KEY (issued_id)
-REFERENCES issued_status(issued_id)
+REFERENCES issued_status(issued_id);
 
 ```
 
@@ -142,8 +142,8 @@ SELECT * FROM books;
 
 ```sql
 UPDATE members
-SET member_address = '125 Oak St'
-WHERE member_id = 'C103';
+SET member_address = '125 Main St'
+WHERE member_id = 'C101'
 ```
 
 **Task 3: Delete a Record from the Issued Status Table**
@@ -161,17 +161,16 @@ SELECT * FROM issued_status
 WHERE issued_emp_id = 'E101'
 ```
 
-
 **Task 5: List Members Who Have Issued More Than One Book**
 -- Objective: Use GROUP BY to find members who have issued more than one book.
 
 ```sql
 SELECT
-    issued_emp_id,
-    COUNT(*)
+     issued_emp_id,
+     COUNT(issued_emp_id)
 FROM issued_status
-GROUP BY 1
-HAVING COUNT(*) > 1
+GROUP BY issued_emp_id
+HAVING COUNT(issued_emp_id)>1
 ```
 
 ### 3. CTAS (Create Table As Select)
@@ -179,24 +178,28 @@ HAVING COUNT(*) > 1
 - **Task 6: Create Summary Tables**: Used CTAS to generate new tables based on query results - each book and total book_issued_cnt**
 
 ```sql
-CREATE TABLE book_issued_cnt AS
-SELECT b.isbn, b.book_title, COUNT(ist.issued_id) AS issue_count
-FROM issued_status as ist
-JOIN books as b
-ON ist.issued_book_isbn = b.isbn
-GROUP BY b.isbn, b.book_title;
+CREATE TABLE book_cnts  -- we can use this table to retrieve this data anytime
+AS
+SELECT 
+	b.isbn, 
+	b.book_title,
+	count(ist.issued_id) as no_issued
+FROM books AS b
+JOIN issued_status AS ist
+ON b.isbn = ist.issued_book_isbn
+GROUP BY 1,2
 ```
-
 
 ### 4. Data Analysis & Findings
 
 The following SQL queries were used to address specific questions:
 
-Task 7. **Retrieve All Books in a Specific Category**:
+Task 7. **Retrieve All Books where publisher is "Penguin Books" and the author is "George Orwell":**:
 
 ```sql
-SELECT * FROM books
-WHERE category = 'Classic';
+SELECT *
+FROM books
+WHERE publisher = 'Penguin Books' AND author = 'George Orwell'
 ```
 
 8. **Task 8: Find Total Rental Income by Category**:
