@@ -260,4 +260,4 @@ This project showcases SQL skills essential for database management and analysis
 
 - **LinkedIn**: [Connect with me professionally](https://www.linkedin.com/in/saket-kumar-diwakar/)
 
-Thank you for your interest in this project!
+Thank you for your interest in this project! and I look forward to connecting with you!
