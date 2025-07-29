@@ -5,6 +5,8 @@
 **Project Title**: Library Management System  
 **Database**: `library_project_p2_db`
 
+![Library](https://github.com/saket-source/Library_database_project/blob/main/Busy%20Library%20Scene.jpg)
+
 This project demonstrates the implementation of a Library Management System using SQL. It includes creating and managing tables, performing CRUD operations. The goal is to showcase skills in database design, manipulation, and querying.
 
 
