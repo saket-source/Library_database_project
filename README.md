@@ -1,4 +1,4 @@
-![Spotify-logotipo](https://github.com/user-attachments/assets/cdd27ac7-2ee1-4077-aad9-8a4aa0d13b39)# Library Management System using SQL Project 
+# Library Management System using SQL Project 
 
 ## Project Overview
 
@@ -6,7 +6,6 @@
 **Database**: `library_project_p2_db`
 
 ![Library](https://github.com/saket-source/Library_database_project/blob/main/Library%20scene.jpg)
-![Spotify-logotipo](https://github.com/user-attachments/assets/594831c5-1d1c-4290-8358-022f6275d3d2)
 
 This project demonstrates the implementation of a Library Management System using SQL. It includes creating and managing tables, performing CRUD operations. The goal is to showcase skills in database design, manipulation, and querying.
 
